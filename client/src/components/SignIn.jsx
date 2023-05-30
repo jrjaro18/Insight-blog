@@ -19,7 +19,7 @@ function SignIn() {
         console.log(password)
     }, [password]);
     return (
-        <React.Fragment>
+        <div className='signinPage'>
             <center> <h1 style={{fontFamily:"'Times New Roman', Tahoma, Geneva, Verdana, sans-serif", fontSize:"5vw"}}>I N S I G H T</h1> </center>
             <div className='SignInContainer'>
                 <div className='SignInHeader'>
@@ -37,7 +37,7 @@ function SignIn() {
                 </div>
 
             </div>
-        </React.Fragment>
+        </div>
     )
 }
 

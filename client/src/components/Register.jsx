@@ -36,8 +36,8 @@ const Register = () => {
     }, [dob]);
 
     return (
-        <React.Fragment>
-            <center> <h1 style={{ fontFamily: "'Times New Roman', Tahoma, Geneva, Verdana, sans-serif", fontSize: "5vw" ,backgroundPosition:"fixed",cursor:"none"}}>I N S I G H T</h1> </center>
+        <div className='regPage'>
+            <h1 style={{ fontFamily: "'Times New Roman', Tahoma, Geneva, Verdana, sans-serif", fontSize: "5vw" ,backgroundPosition:"fixed",cursor:"none",textAlign:"center"}}>I N S I G H T</h1>
             <div className='RegisterContainer'>
                 <div className='RegisterHeader'>
                     Register Here
@@ -52,13 +52,13 @@ const Register = () => {
                             <DatePicker label="Date of Birth" onChange={(e)=>{setDob(e.$d)}}/>
                         </LocalizationProvider>
                         <Button variant="outlined" style={{marginTop:"1rem"}}>Create Account</Button>
-                    </form>
+                    </form> 
                 </div>
                 <div className='RegisterFooterText'>
                     Already have an account? <a href='/signin'>LogIn</a>
                 </div>
             </div>
-        </React.Fragment>
+        </div>
     )
 }
 

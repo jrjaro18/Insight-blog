@@ -1,5 +1,6 @@
-body{
+.signinPage{
     background-color: rgb(207, 175, 241);   
+    height:100vh;
 }
 .SignInContainer{
     background-color: rgb(222, 217, 212);
@@ -13,7 +14,6 @@ body{
     margin-top: 13vh;
     border-radius: 0.5rem;
 }
-
 form{
     display: flex;
     flex-direction: column;
