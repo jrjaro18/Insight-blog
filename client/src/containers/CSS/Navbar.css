@@ -1,0 +1,60 @@
+.navbar>ul{
+    display: flex;
+    align-items: center;
+    background-color: #f2eeee;
+    height: 10vh;
+    width:auto;
+    padding: 1rem;
+    z-index: 0;
+    border-radius: 1vh;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.25);
+}
+
+.navbar>ul>li{
+    list-style: none;
+    margin-right: 2.7rem;
+}
+.navbar>ul>li>a{
+    text-decoration: none;
+    color: black;
+}
+.navbar>ul>li>.name{
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 4.4vmin;
+    font-weight: bold;
+}
+
+.navbar>ul>li{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 3vmin;
+}
+.navbar>ul>li>:not(.name):hover{
+    margin-top: 0.5rem;
+    box-shadow: 0px 2px 0px 0px rgba(0,0,0,0.5);
+    transition: linear;
+    cursor: pointer;
+}
+.navbar>ul>li:not(.name):hover{
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+.login{
+    margin-left: auto;
+    margin-right: 0;
+}
+.others{
+    padding-left: 3vw;
+}
+@media (min-width:768px) {
+    .others{
+        display: none;
+    }
+}
+@media (max-width: 768px) {
+    .others {
+        display: block; /* or any other desired display value */
+    }
+    .navbar>ul>li>:not(.name):not(.others){
+        display: none;
+    }
+}
