@@ -1,0 +1,92 @@
+.blogpage{
+    margin:0 0.7vw;
+}
+.blogpageheading{
+    display: flex;  
+    text-decoration: solid;
+    padding-bottom: 4vh;
+    border-bottom: 0.1vmin ridge #000000;
+}
+.blogpageimage>img{
+    width:60vmin;
+    height:auto;
+    margin-right:2vw;
+}
+.blogpageheadingright{
+    margin-top:auto;
+    margin-bottom:auto;
+}
+.blogpagetitle{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 7vmin;
+    margin-bottom:1rem;
+    text-align: start;
+}
+.blogpageauthor{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 3vmin;
+    margin-bottom:2rem;
+}
+.blogpagedate{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 2.5vmin;
+    margin-bottom:0.7rem;
+}
+.blogpagecontent{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 3vmin;
+    text-align: justify;
+    margin-bottom:2rem;
+}
+.blogpagelike{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    margin-right: 1rem;
+    text-align: center;
+    gap:0.5rem;
+}
+.blogpagelikecontainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:1vw;
+}
+.blogpagecommentbutton{
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 3.5vmin;
+}
+.blogpagecommentform{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 0.1vmin ridge #000000;
+}
+
+@media (max-width: 768px) {
+    .blogpageimage>img{
+        width:100%;
+        height:auto;
+        margin-right:0;
+    }
+    .blogpageheading{
+        flex-direction: row;
+        flex-wrap: wrap-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+    .blogpageauthor{
+        margin-bottom: 2vh;
+        font-size: 4vmin;
+    }
+    .blogpagedate{
+        font-size: 3vmin;
+    }
+    .blogpagecontent{
+        font-size: 4vmin;
+    }
+}

@@ -51,4 +51,7 @@
     .tilecontainer > .tileimage {
       order: -1;
     }
+    .navbar>ul>li{
+        margin-right: 0rem;
+    }
 }

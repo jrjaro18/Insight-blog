@@ -20,7 +20,7 @@ function SignIn() {
     }, [password]);
     return (
         <div className='signinPage'>
-            <center> <h1 style={{fontFamily:"'Times New Roman', Tahoma, Geneva, Verdana, sans-serif", fontSize:"5vw"}}>I N S I G H T</h1> </center>
+            <center> <h1 style={{fontFamily:"'Times New Roman', Tahoma, Geneva, Verdana, sans-serif", fontSize:"5vw",marginTop:"0"}}>I N S I G H T</h1> </center>
             <div className='SignInContainer'>
                 <div className='SignInHeader'>
                     Sign In

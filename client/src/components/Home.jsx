@@ -8,12 +8,14 @@ const Home = () => {
   return (
 
     <React.Fragment>
+      <div className='homepage'>
         <Navbar/>
         <Searchbar/>
         <br/>
         <Tiles/>
         <Tiles/>
         <Tiles/>
+        </div>
     </React.Fragment>
 
   )
