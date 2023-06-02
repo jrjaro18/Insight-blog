@@ -1,0 +1,57 @@
+form {
+    display: unset;
+}
+
+.uploadpagetitle, .uploadpagecontent, .uploadpagethumbnail, .uploadpagetags {
+    margin-bottom: 5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1vh
+}
+
+.uploadpagetitle>label, .uploadpagecontent>label, .uploadpagethumbnail>label, .uploadpagetags>label {
+    font-size: 2.5vmax;
+    color: #000000;
+}
+
+.uploadpagetitle>input {
+    font-size: 3vw;
+    height: 7vh;
+    width: 94vw;
+    background-color: transparent;
+    outline: none;
+}
+.uploadpagetags>label{
+    margin-left: 2.3vw;
+    margin-bottom: 1vh;
+}
+.uploadpagetags>input{
+    font-family:"Arial", Helvetica, sans-serif;
+    font-size: 1vw;
+    height: 6vh;
+    width: 60vw;
+    background-color: transparent;
+    outline: none;
+    border-radius: 1vmin;
+    margin-left: 2.3vw;
+}
+
+@media (max-width:768px) {
+    .uploadpagetitle, .uploadpagecontent, .uploadpagethumbnail, .uploadpagetags {
+        justify-content: center;
+        align-items: center;
+    }
+    .uploadpagetitle>label, .uploadpagecontent>label, .uploadpagethumbnail>label, .uploadpagetags>label {
+        font-size: 4vmax;
+        color: #000000;
+        margin-bottom: 3vh;
+    } 
+    .uploadpagetags>input{
+        font-size: 2vh;
+    }
+    .uploadpagetags{
+        margin-bottom: 2vh;
+    }
+}

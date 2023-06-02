@@ -1,8 +1,8 @@
-.searchbar{
+.searchbar {
     display: flex;
-    align-items:center;
-    justify-content:center;
-    padding-bottom:0.3rem;
-    padding-right:1rem;
+    align-items: center;
+    justify-content: center;
+    padding-right: 0rem;
     /* box-shadow: 4px 4px 4px 0px rgba(0,0,0,0.15); */
+    width: 99vw;
 }

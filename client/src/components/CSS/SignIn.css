@@ -5,7 +5,7 @@
 .SignInContainer{
     background-color: rgb(242, 240, 237);
     height:auto;
-    width:63vh;
+    width:43vw;
     padding:1vw;
     text-align: center;
     display: flex;
@@ -14,7 +14,7 @@
     margin-top: 13vh;
     border-radius: 0.5rem;
 }
-form{
+.SignInInfo>form{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,4 +41,12 @@ form{
 .SignInFooterText{
     margin-top: 1rem;
     margin-bottom: 0.5rem;
+}
+@media (max-width: 768px) {
+    .SignInContainer{
+        width: 88vw;
+        height: 50vh;
+        align-items: center;
+        justify-content: center;
+    }
 }

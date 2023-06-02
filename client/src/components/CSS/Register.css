@@ -15,7 +15,7 @@
     border-radius: 0.5rem;
     margin-bottom: 0rem;
 }
-form{
+.RegisterInfo>form{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -42,4 +42,9 @@ form{
 .RegisterFooterText{
     margin-top: 1rem;
     margin-bottom: 0.5rem;
+}
+@media (max-width:768px) {
+    .RegisterContainer{
+        width:93vw;
+    }
 }
