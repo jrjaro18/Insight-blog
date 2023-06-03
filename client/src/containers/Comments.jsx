@@ -1,14 +1,17 @@
 import React from 'react'
 import "./CSS/Comments.css"
-const Comments = () => {
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+const Comments = (props) => {
+  const { comment } = props
   return (
     <React.Fragment>
         <div className="commentcontainer">
             <div className="commentuser">
-                Commenter User Name    
+                <AccountCircleIcon className="commentusericon"/>
+                {comment.commentername}   
             </div>
             <div className="commenttext">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec venenatis eleifend neque, at convallis metus iaculis non. Mauris hendrerit, enim nec viverra tristique, nisl dui tincidunt odio, at scelerisque leo neque ut mauris. Vestibulum id ligula volutpat, lacinia metus id, fermentum tellus. Suspendisse quis tempor mauris.
+            {comment.comment}
             </div>
         </div>
     </React.Fragment>

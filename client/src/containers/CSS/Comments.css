@@ -1,7 +1,10 @@
 .commentuser{
+    display: flex;
+    gap: 0.5vw;
     margin-bottom:1vw;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 2.7vmin;
+    align-items: center;
 }
 .commenttext{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

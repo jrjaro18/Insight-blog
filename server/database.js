@@ -8,6 +8,6 @@ const dbase = () => {
     })
     .catch((err) => {
         console.error('Error connecting to MongoDB', err);
-    });
+    }); 
 }
 module.exports = dbase;

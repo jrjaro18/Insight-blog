@@ -32,10 +32,9 @@ app.get('/', (req, res) => {
     res.send('Hello, World!');
 });
 
-//register logic 
+//register logic
 app.post('/register', async (req, res) => {
     const user = req.body;
-
     bcrypt.hash(user.password, saltRounds, async function (err, hash) {
         try {
             user.password = hash;
@@ -55,10 +54,9 @@ app.post('/register', async (req, res) => {
 //login logic
 app.post('/login', async (req, res) => {
     const user = req.body;
-    console.log(user);
+    //console.log(user);
     try {
         const data = await User.findOne({ email: user.email });
-        
         if (data) {
             bcrypt.compare(user.password, data.password, function (err, result) {
                 if (result == true) {
@@ -84,7 +82,6 @@ app.post('/login', async (req, res) => {
 const removeHtmlTags = (str) => {
     return str.replace(/<[^>]*>?/gm, '');
 }
-
 app.post('/upload', upload.single('thumbnail'), async (req, res) => {
     const blog = {};
     blog.title = req.body.title;
@@ -116,17 +113,18 @@ app.get('/tile-data', async (req, res) => {
     try {
         const data = await Blog.find({},{ title: 1, blogPreview: 1, likes: 1, authorname: 1, _id: 1});
         console.log("Tile data sent successfully");
-        console.log(data);
+        // console.log(data);
         res.send(data);
 
     } catch (err) {
         console.log(err);
     }
 });
+
 //blog tiles image logic
 app.get('/tile-image/:id', async (req, res) => {
     //console.log(`./uploads/${(req.params.id).replace(':','')}.jpg`);
-    console.log(`/uploads/${(req.params.id).replace(':','')}.jpg`);
+    //console.log(`/uploads/${(req.params.id).replace(':','')}.jpg`);
     res.send(`/uploads/${(req.params.id).replace(':','')}.jpg`);
 });
 
@@ -135,9 +133,67 @@ app.get('/blog/:id', async (req, res) => {
     try {
         const data = await Blog.findOne({ _id: req.params.id });
         console.log("Blog data sent successfully");
-        console.log(data);
+        // console.log(data);
         res.send(data);
 
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+//blog page liking logic
+app.post('/blog/like/:id', async (req, res)=>{
+    //console.log(req.params.id);
+    uid = req.params.id.replace(':','').split('+')[1];
+    bid = req.params.id.replace(':','').split('+')[0];
+    // console.log(uid);
+    // console.log(bid);
+    try {
+        const data = await Blog.findOne({ _id: bid},{likesArr:1,likes:1});
+        if(data.likesArr.includes(uid)){
+            data.likes = data.likes - 1;
+            data.likesArr= data.likesArr.filter((id)=>{
+                return id != uid;
+            })
+            await data.save();
+            const response = {likes:`${data.likes}`,liked:false};
+            res.send(response);
+        }
+        else{
+            data.likesArr.push(uid);
+            data.likes = data.likes + 1;
+            await data.save();
+            const response = {likes:`${data.likes}`,liked:true};
+            res.send(response);
+        }
+    } catch (err) {
+        console.log(err);
+    }
+})
+
+//blog page comment post logic
+app.post('/blog/comment/:id', async (req, res)=>{
+    //console.log(req.body.comment);
+    bid = req.params.id.replace(':','').split('+')[0];
+    uid = req.params.id.replace(':','').split('+')[1];
+    try {
+        const data = await Blog.findOne({ _id: bid},{comments:1});
+        const comment = {comment:req.body.comment,commenterid:uid,commentername:req.body.name};
+        data.comments.push(comment);
+        await data.save();
+        res.send('Commented');
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+//blog page comment get logic
+app.get('/blog/get-comments/:id', async (req, res)=>{
+    //console.log(req.body.comment);
+    bid = req.params.id.replace(':','').split('+')[0];
+    try {
+        const data = await Blog.findOne({ _id: bid},{comments:1});
+        res.send(data.comments);
     } catch (err) {
         console.log(err);
     }

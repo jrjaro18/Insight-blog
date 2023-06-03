@@ -8,26 +8,30 @@ const blogSchema = new mongoose.Schema({
     content: {
         type: String,
     },
-    tags:{
+    tags: {
         type: Array,
     },
-    authorid:{
+    authorid: {
         type: String,
         required: true,
     },
-    authorname:{
+    authorname: {
         type: String,
         required: true,
     },
-    likes:{
+    likes: {
         type: Number,
         default: 0,
     },
-    date:{
+    date: {
         type: Date,
         default: Date.now,
     },
-    comments:{
+    comments: {
+        type: Array,
+        default: [],
+    },
+    likesArr: {
         type: Array,
         default: [],
     },

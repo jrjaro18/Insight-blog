@@ -11,9 +11,8 @@ const Tiles = (props) => {
         if (data._id === undefined) {
             return
         }
-
         axios.get('http://localhost:5000/tile-image/:' + data._id).then((response) => {
-            console.log("http://localhost:5000" + response.data)
+            //console.log("http://localhost:5000" + response.data)
             setImageData(response.data)
         }).catch((err) => {
             console.log(err)
