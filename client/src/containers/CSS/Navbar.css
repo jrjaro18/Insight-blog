@@ -14,7 +14,7 @@
     list-style: none;
     margin-right: 2.7rem;
 }
-.navbar>ul>li>a{
+.navbar>ul>li>a,.navbar>ul>li>div{
     text-decoration: none;
     color: black;
 }
@@ -38,19 +38,19 @@
     transform: scale(1.05);
     transition: transform 0.3s ease-in-out;
 }
-.login{
+.person{
     margin-left: auto;
     margin-right: 0;
 }
 .others{
     padding-left: 3vw;
 }
-@media (min-width:768px) {
+@media (min-width:1010px) {
     .others{
         display: none;
     }
 }
-@media (max-width: 768px) {
+@media (max-width: 1010px) {
     .others {
         display: block; /* or any other desired display value */
     }

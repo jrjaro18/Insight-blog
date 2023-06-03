@@ -1,33 +1,51 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import './CSS/Tiles.css'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-const Tiles = () => {
-  return (
-    <React.Fragment>
-        <div className="tilecontainer">
-            <div className="tileimage">
-                <img src="https://www.pragimtech.com/wp-content/uploads/2021/03/ReactJS.jpg" alt="tileimage"/>
-            </div>
-            <div className='tiletext'>
-                <div className='tiletitle'>
-                    Tile Title comes here!
+import axios from 'axios';
+const Tiles = (props) => {
+    const { data } = props;
+    const [imageData, setImageData] = React.useState();
+
+    useEffect(() => {
+        if (data._id === undefined) {
+            return
+        }
+
+        axios.get('http://localhost:5000/tile-image/:' + data._id).then((response) => {
+            console.log("http://localhost:5000" + response.data)
+            setImageData(response.data)
+        }).catch((err) => {
+            console.log(err)
+        })
+    },)
+
+    return (
+        <React.Fragment>
+            <Link to= {"/blog/:"+data._id} className="tilecontainer" style={{textDecoration:"unset"}}>
+                <div className="tileimage">
+                    <img src={"http://localhost:5000" + imageData} alt="tileimage" />
                 </div>
-                <div className='tileauthor'>
-                    - Author Name
-                </div>
-                <div className='tilebody'>
-                    <p>Preview text Lorem ipsum 40 dolor sit amet, consectetur adipiscing elit. Sed vestibulum quam non mi vehicula tincidunt. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla facilisi. Quisque interdum eu mauris vitae commodo. Vivamus vitae enim id felis sagittis ullamcorper non nec justo</p>
-                </div>
-                <div className="tilelikes" style={{display:"flex",alignItems:"center"}}>
-                    <FavoriteBorderIcon/>
-                    <div className="tilelikescount" style={{marginLeft:"0.5rem"}}>
-                        100
+                <div className='tiletext'>
+                    <div className='tiletitle'>
+                        {data.title}
+                    </div>
+                    <div className='tileauthor'>
+                        {data.authorname}
+                    </div>
+                    <div className='tilebody'>
+                        <p>{data.blogPreview}</p>
+                    </div>
+                    <div className="tilelikes" style={{ display: "flex", alignItems: "center",color:"black" }}>
+                        <FavoriteBorderIcon />
+                        <div className="tilelikescount" style={{ marginLeft: "0.5rem" }}>
+                            {data.likes}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </React.Fragment>
-  )
+            </Link>
+        </React.Fragment>
+    )
 }
 
 export default Tiles

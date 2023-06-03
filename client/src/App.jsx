@@ -15,9 +15,9 @@ function App() {
           <Route path="/signin" element={<SignIn />} />
           <Route path="/register" element={<Register />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/sample-blog" element={<BlogPage />} />
+          <Route path="/blog/:id" element={<BlogPage />} />
           <Route path="*" element={"Wrong Page"} />
-          <Route path="/sample-upload" element={<Upload />} />
+          <Route path="/upload" element={<Upload />} />
       </Routes>
     </BrowserRouter>
     </div>

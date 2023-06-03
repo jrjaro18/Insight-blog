@@ -67,7 +67,7 @@
     border-bottom: 0.1vmin ridge #000000;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1010px) {
     .blogpageimage>img{
         width:100%;
         height:auto;
