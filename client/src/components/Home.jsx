@@ -6,6 +6,7 @@ import Searchbar from '../containers/Searchbar'
 import Tiles from '../containers/Tiles'
 
 const Home = () => {
+  localStorage.removeItem('search')
   const [data, setData] = React.useState([]);
 
   useEffect(() => {

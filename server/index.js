@@ -1,7 +1,7 @@
 //importing nodejs modules
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
+const Fuse = require('fuse.js');
 const bcrypt = require('bcrypt');
 const multer = require('multer');
 const fs = require('fs');
@@ -111,7 +111,7 @@ app.post('/upload', upload.single('thumbnail'), async (req, res) => {
 //blog tiles text logic
 app.get('/tile-data', async (req, res) => {
     try {
-        const data = await Blog.find({},{ title: 1, blogPreview: 1, likes: 1, authorname: 1, _id: 1});
+        const data = await Blog.find({},{ title: 1, blogPreview: 1, likes: 1, authorname: 1, _id: 1}, { sort: { date:-1, likes: -1 } });
         console.log("Tile data sent successfully");
         // console.log(data);
         res.send(data);
@@ -194,6 +194,39 @@ app.get('/blog/get-comments/:id', async (req, res)=>{
     try {
         const data = await Blog.findOne({ _id: bid},{comments:1});
         res.send(data.comments);
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+//blog search logic
+app.get('/search/:query', async (req, res)=>{
+    //console.log(req.params.query);
+    const query = req.params.query.replace(':','').toLowerCase();
+    try {
+        const data = await Blog.find({},{ title: 1, blogPreview: 1, likes: 1, authorname: 1, _id: 1, content:1}, { sort: { date:-1, likes: -1 } });
+        const options = {
+            includeScore: true,
+            keys: ['title', 'content']
+        }
+        const fuse = new Fuse(data, options);
+        const result = fuse.search(query);
+
+        //console.log(result);
+        res.send(result);
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+//author page logic
+app.get('/author-page/:id', async (req, res)=>{
+    //console.log(req.params.id);
+    const id = req.params.id.replace(':','');
+    try {
+        const data = await Blog.find({authorid:id},{ title: 1, blogPreview: 1, likes: 1, authorname: 1, _id: 1}, { sort: { date:-1, likes: -1 } });
+        //console.log(data);
+        res.send(data);
     } catch (err) {
         console.log(err);
     }

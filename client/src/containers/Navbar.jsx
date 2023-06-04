@@ -1,13 +1,39 @@
 import React, { useState } from 'react'
 import "./CSS/Navbar.css"
-import Card from '@mui/material/Card';
+import Modal from 'react-modal'
 import Button from '@mui/material/Button';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 const Navbar = () => {
+
+    let subtitle;
     const [viewModal, setViewModal] = useState(false);
     const handleNameClick = () => {
         setViewModal(prevState => !prevState);
+        setIsOpen(true);
     };
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+
+    function openModal() {
+        setIsOpen(true);
+    }
+    function closeModal() {
+        setIsOpen(false);
+    }
+    const customStyles = {
+        content: {
+            width:'auto',
+            left:'90%',
+            marginTop:'7%',
+            right: 'auto',
+            bottom: 'auto',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            display:'flex',
+            flexDirection: 'column',
+
+        },
+    };
+
     const handleLogin = () => {
         localStorage.clear();
         window.location.href = '/signin';
@@ -19,6 +45,11 @@ const Navbar = () => {
     const handleWrite = () => {
         window.location.href = '/upload';
     }
+
+    const handleYourBlogs =()=>{
+        window.location.href = '/author-page'
+    }
+
     return (
         <div>
             <nav className="navbar">
@@ -37,10 +68,13 @@ const Navbar = () => {
                             localStorage.getItem('email') === null ? <a href="/signin">Sign In</a> :
                                 <div onClick={handleNameClick}>{localStorage.getItem('name')}</div>
                         }
-                        {viewModal && (
+                        {modalIsOpen && (
                             <div className="modal">
                                 <div className="modal-content">
-                                    <Card style={{ display: "flex", justifyContent: "space-between" }}>
+                                    <Modal isOpen={modalIsOpen}
+                                        onRequestClose={closeModal}
+                                        style={customStyles}
+                                        contentLabel="Example Modal">
                                         {localStorage.getItem('email') === null ? <Button onClick={handleLogin}>
                                             Login
                                         </Button> : <Button onClick={handleLogout}>
@@ -50,32 +84,17 @@ const Navbar = () => {
                                         <Button onClick={handleWrite}>
                                             Write
                                         </Button>
-                                    </Card>
+                                        <Button onClick={handleYourBlogs}>
+                                            Your Blogs
+                                        </Button>
+                                    </Modal>
                                 </div>
                             </div>
                         )}
                     </li>
                     <li >
                         <div className='others' onClick={handleNameClick}><MoreVertIcon />
-                            {viewModal && (
-                                <div className="modal">
-                                    <div className="modal-content">
-                                        <Card style={{ display: "flex", flexWrap: "wrap", flexDirection: "column", justifyContent: "space-between", backgroundColor: "#f2eeee", border: "none", boxShadow: "none" }}>
-                                            {localStorage.getItem('email') === null ?
-                                            <Button onClick={handleLogin} style={{ backgroundColor: "#f2eeee", border: "none", boxShadow: "none" }}>
-                                            Login
-                                        </Button>:
-                                                <Button onClick={handleLogout} style={{ backgroundColor: "#f2eeee", border: "none", boxShadow: "none" }}>
-                                                    Logout
-                                                </Button>
-                                            }
-                                            <Button onClick={handleWrite} style={{ backgroundColor: "#f2eeee", border: "none", boxShadow: "none" }}>
-                                                Write
-                                            </Button>
-                                        </Card>
-                                    </div>
-                                </div>
-                            )}
+                            {/*  */}
                         </div>
 
                     </li>

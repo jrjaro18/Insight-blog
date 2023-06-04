@@ -37,7 +37,11 @@ const BlogPage = () => {
     const handleSubmit = () => {
         if (localStorage.getItem('email') === null) {
             alert("Login to comment on the blog")
-        } else {
+        }
+        if (comment === undefined || comment === null || comment === "") {
+            alert("Comment cannot be empty")
+        }
+        else {
             axios.post('http://localhost:5000/blog/comment/:' + data._id + "+" + localStorage.getItem("id"), { comment: comment, name: localStorage.getItem('name') }).then((response) => {
                 window.location.reload()
             }).catch((err) => {
@@ -128,11 +132,11 @@ const BlogPage = () => {
                             </form>
                         ) : (<center>To Comment Login!</center>)}
                         {
-                            recComment?(recComment.map((comment,i) => {
+                            recComment ? (recComment.map((comment, i) => {
                                 return (
                                     <Comments key={i} comment={comment} />
                                 )
-                            })):(<center>Loading</center>)
+                            })) : (<center>Loading</center>)
                         }
                     </div>
                 </div>
