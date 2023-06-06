@@ -5,4 +5,6 @@ Steps to run:
     > npm start
     
 > For Backend:
-  > coming soon...
+      > cd server
+      > npm i
+      > nodemon
