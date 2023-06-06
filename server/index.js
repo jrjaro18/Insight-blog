@@ -28,7 +28,7 @@ app.listen(port, async () => {
     console.log(`Server is running on port ${port}`);
 });
 //creating routes
-app.get('/', (req, res) => {
+app.post('/', (req, res) => {
     res.send('Hello, World!');
 });
 
@@ -111,7 +111,7 @@ app.post('/upload', upload.single('thumbnail'), async (req, res) => {
 //blog tiles text logic
 app.get('/tile-data', async (req, res) => {
     try {
-        const data = await Blog.find({},{ title: 1, blogPreview: 1, likes: 1, authorname: 1, _id: 1}, { sort: { date:-1, likes: -1 } });
+        const data = await Blog.find({}, { title: 1, blogPreview: 1, likes: 1, authorname: 1, _id: 1 }, { sort: { date: -1, likes: -1 } });
         console.log("Tile data sent successfully");
         // console.log(data);
         res.send(data);
@@ -125,7 +125,7 @@ app.get('/tile-data', async (req, res) => {
 app.get('/tile-image/:id', async (req, res) => {
     //console.log(`./uploads/${(req.params.id).replace(':','')}.jpg`);
     //console.log(`/uploads/${(req.params.id).replace(':','')}.jpg`);
-    res.send(`/uploads/${(req.params.id).replace(':','')}.jpg`);
+    res.send(`/uploads/${(req.params.id).replace(':', '')}.jpg`);
 });
 
 //blog page logic
@@ -142,28 +142,28 @@ app.get('/blog/:id', async (req, res) => {
 });
 
 //blog page liking logic
-app.post('/blog/like/:id', async (req, res)=>{
+app.post('/blog/like/:id', async (req, res) => {
     //console.log(req.params.id);
-    uid = req.params.id.replace(':','').split('+')[1];
-    bid = req.params.id.replace(':','').split('+')[0];
+    uid = req.params.id.replace(':', '').split('+')[1];
+    bid = req.params.id.replace(':', '').split('+')[0];
     // console.log(uid);
     // console.log(bid);
     try {
-        const data = await Blog.findOne({ _id: bid},{likesArr:1,likes:1});
-        if(data.likesArr.includes(uid)){
+        const data = await Blog.findOne({ _id: bid }, { likesArr: 1, likes: 1 });
+        if (data.likesArr.includes(uid)) {
             data.likes = data.likes - 1;
-            data.likesArr= data.likesArr.filter((id)=>{
+            data.likesArr = data.likesArr.filter((id) => {
                 return id != uid;
             })
             await data.save();
-            const response = {likes:`${data.likes}`,liked:false};
+            const response = { likes: `${data.likes}`, liked: false };
             res.send(response);
         }
-        else{
+        else {
             data.likesArr.push(uid);
             data.likes = data.likes + 1;
             await data.save();
-            const response = {likes:`${data.likes}`,liked:true};
+            const response = { likes: `${data.likes}`, liked: true };
             res.send(response);
         }
     } catch (err) {
@@ -172,13 +172,13 @@ app.post('/blog/like/:id', async (req, res)=>{
 })
 
 //blog page comment post logic
-app.post('/blog/comment/:id', async (req, res)=>{
+app.post('/blog/comment/:id', async (req, res) => {
     //console.log(req.body.comment);
-    bid = req.params.id.replace(':','').split('+')[0];
-    uid = req.params.id.replace(':','').split('+')[1];
+    bid = req.params.id.replace(':', '').split('+')[0];
+    uid = req.params.id.replace(':', '').split('+')[1];
     try {
-        const data = await Blog.findOne({ _id: bid},{comments:1});
-        const comment = {comment:req.body.comment,commenterid:uid,commentername:req.body.name};
+        const data = await Blog.findOne({ _id: bid }, { comments: 1 });
+        const comment = { comment: req.body.comment, commenterid: uid, commentername: req.body.name };
         data.comments.push(comment);
         await data.save();
         res.send('Commented');
@@ -188,11 +188,11 @@ app.post('/blog/comment/:id', async (req, res)=>{
 });
 
 //blog page comment get logic
-app.get('/blog/get-comments/:id', async (req, res)=>{
+app.get('/blog/get-comments/:id', async (req, res) => {
     //console.log(req.body.comment);
-    bid = req.params.id.replace(':','').split('+')[0];
+    bid = req.params.id.replace(':', '').split('+')[0];
     try {
-        const data = await Blog.findOne({ _id: bid},{comments:1});
+        const data = await Blog.findOne({ _id: bid }, { comments: 1 });
         res.send(data.comments);
     } catch (err) {
         console.log(err);
@@ -200,18 +200,27 @@ app.get('/blog/get-comments/:id', async (req, res)=>{
 });
 
 //blog search logic
-app.get('/search/:query', async (req, res)=>{
+app.get('/search/:query', async (req, res) => {
     //console.log(req.params.query);
-    const query = req.params.query.replace(':','').toLowerCase();
+    const query = req.params.query.replace(':', '').toLowerCase();
     try {
-        const data = await Blog.find({},{ title: 1, blogPreview: 1, likes: 1, authorname: 1, _id: 1, content:1}, { sort: { date:-1, likes: -1 } });
+        let data = await Blog.find({}, { title: 1, blogPreview: 1, likes: 1, authorname: 1, _id: 1, content: 1, tags:1 }, { sort: { date: -1, likes: -1 } });
+        let tags = '';
+        for (let i = 0; i < data.length; i++) {
+            for (let j = 0; j < data[i].tags.length; j++) {
+                tags = tags + ', ' + data[i].tags[j];
+            }
+            data[i].newTags = tags;
+            tags = '';
+            //console.log(data[i].newTags);
+        }
         const options = {
             includeScore: true,
-            keys: ['title', 'content']
+            keys: [{name: 'title', weight: '0.2'}, {name: 'content', weight: 0.5},{name: 'newTags', weight: 0.3}]
         }
         const fuse = new Fuse(data, options);
-        const result = fuse.search(query);
-
+        let result = fuse.search(query);
+                
         //console.log(result);
         res.send(result);
     } catch (err) {
@@ -220,11 +229,11 @@ app.get('/search/:query', async (req, res)=>{
 });
 
 //author page logic
-app.get('/author-page/:id', async (req, res)=>{
+app.get('/author-page/:id', async (req, res) => {
     //console.log(req.params.id);
-    const id = req.params.id.replace(':','');
+    const id = req.params.id.replace(':', '');
     try {
-        const data = await Blog.find({authorid:id},{ title: 1, blogPreview: 1, likes: 1, authorname: 1, _id: 1}, { sort: { date:-1, likes: -1 } });
+        const data = await Blog.find({ authorid: id }, { title: 1, blogPreview: 1, likes: 1, authorname: 1, _id: 1 }, { sort: { date: -1, likes: -1 } });
         //console.log(data);
         res.send(data);
     } catch (err) {

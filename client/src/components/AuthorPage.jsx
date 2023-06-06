@@ -18,7 +18,7 @@ const AuthorPage = () => {
     return (
         <React.Fragment>
             <Navbar />
-            <div className='authorpageheading'>Author Page</div >
+            <div className='authorpageheading'>Your Blogs</div >
             {
                 data?(
                     data.map((data, index) => {

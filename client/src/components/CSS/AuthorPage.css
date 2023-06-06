@@ -1,0 +1,10 @@
+.authorpageheading{
+    margin-left:2vh;
+    margin-top: 5vh;
+    margin-bottom: 3vh;
+    font-size: 5vmin;
+    color: #000000;
+    font-family: 'Arial' ,sans-serif;
+    padding-bottom:2vh;
+    border-bottom: 0.1vh solid #000000;
+}

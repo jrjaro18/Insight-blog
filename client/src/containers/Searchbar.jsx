@@ -5,7 +5,8 @@ import SearchSharpIcon from '@mui/icons-material/SearchSharp';
 
 const Searchbar = () => {
     const [search, setSearch] = useState("");
-    const handleClick = () => {
+    const handleClick = (e) => {
+        e.preventDefault();
         localStorage.setItem("search", search);
         window.location.href = "/search";
     }
@@ -16,11 +17,10 @@ const Searchbar = () => {
 
     return (
         <div>
-            <form>
+            <form onSubmit={handleClick}>
                 <div className="searchbar">
                     <TextField id="filled-basic" label="" variant="filled" value={search!==""?search:localStorage.getItem('search')} placeholder="Topic" style={{ marginLeft: "1vw", marginTop: "1vh", width: "92vw", backgroundColor: "whitesmoke", borderColor: "transparent", fontSize:"3vmax" }} onChange={(e) => { setSearch(e.target.value) }} />
-                    <SearchSharpIcon style={{ marginLeft: "1vw", cursor: "pointer", fontSize: "2rem", backgroundColor: "white", margin: "0px auto" }} onClick={handleClick} />
-
+                    <SearchSharpIcon style={{ marginLeft: "1vw", cursor: "pointer", fontSize: "2rem", backgroundColor: "white", margin: "0px auto" }} onClick={handleClick}/>
                 </div>
             </form>
         </div>

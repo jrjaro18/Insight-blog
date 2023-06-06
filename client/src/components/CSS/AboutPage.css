@@ -1,0 +1,21 @@
+.aboutcontainer{
+    margin:0vh;
+    padding:0.7vw;
+    background-color: rgb(38, 29, 29);
+    height:150vh;
+    width:98vw;
+}
+.aboutheading{
+    top:0;
+    position: sticky;
+    margin-bottom:2vh;
+    border-bottom: 1px solid rgb(255, 255, 255);
+    background-color: rgb(38, 29, 29);
+}
+.aboutheading>ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left:0;
+    list-style: none;
+}

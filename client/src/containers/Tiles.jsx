@@ -32,7 +32,7 @@ const Tiles = (props) => {
                         {data.authorname}
                     </div>
                     <div className='tilebody'>
-                        <p>{data.blogPreview}</p>
+                        <p>{data.blogPreview + "..."}</p>
                     </div>
                     <div className="tilelikes" style={{ display: "flex", alignItems: "center",color:"black" }}>
                         <FavoriteBorderIcon />

@@ -11,7 +11,7 @@ const SearchPage = () => {
     const [searchResults, setSearchResults] = useState([]);
     useEffect(() => {
         axios.get(`http://localhost:5000/search/:${search}`).then((res) => {
-            console.log(res.data[0].item);
+            //console.log(res.data[0].item);
             setSearchResults(res.data);
         }).catch((err) => {
             console.log(err);

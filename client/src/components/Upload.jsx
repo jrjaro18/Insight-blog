@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState} from 'react';
 import axios from 'axios';
 import Navbar from '../containers/Navbar'
@@ -26,7 +26,7 @@ const Upload = () => {
     const { getRootProps, getInputProps } = useDropzone({ onDrop, accept: 'image/*', });
 
     const dropzoneStyle = {
-        width: '92vw',
+        width: '62vw',
         height: '40vmax',
         border: '2px dashed #ccc',
         borderRadius: '5px',
@@ -38,7 +38,7 @@ const Upload = () => {
         margin: '2vh auto',
         textAlign: 'center',
         cursor: 'pointer',
-        fontFamily: "Arial"
+        fontFamily: "Arial",
     };
 
     const handleClick = (e) => {
@@ -70,7 +70,10 @@ const Upload = () => {
             alert('Please enter atleast 10 tags!');
             return;
         }
-
+        if(temp.type!=="image/jpeg"){
+            alert('Please upload a jpeg image!');
+            return;
+        }
         axios.post('http://localhost:5000/upload', data).then((res) => {
             console.log(res);
             window.location.href = '/'
@@ -103,7 +106,7 @@ const Upload = () => {
                         )}
                         {selectedImage && (
                             <div>
-                                <img src={selectedImage} alt="Selected" style={{ height: "35vw", }} />
+                                <img src={selectedImage} alt="Selected" style={{ maxWidth:"60vw", maxHeight: "35vw", }} />
                             </div>
                         )}
                     </div>

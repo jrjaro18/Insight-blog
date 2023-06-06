@@ -7,6 +7,7 @@ import BlogPage from './components/BlogPage';
 import Upload from './components/Upload';
 import SearchPage from './components/SearchPage';
 import AuthorPage from './components/AuthorPage';
+import AboutPage from './components/AboutPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/search" element={<SearchPage />} />
           <Route path="/blog/:id" element={<BlogPage />} />
           <Route path="/author-page" element={<AuthorPage />} />
+          <Route path="/about" element={<AboutPage/>} />
           <Route path="*" element={"Wrong Page"} />
           <Route path="/upload" element={<Upload />} />
       </Routes>
