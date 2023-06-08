@@ -1,21 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import "./CSS/Navbar.css"
 import Modal from 'react-modal'
 import Button from '@mui/material/Button';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 const Navbar = () => {
 
-    let subtitle;
-    const [viewModal, setViewModal] = useState(false);
     const handleNameClick = () => {
-        setViewModal(prevState => !prevState);
         setIsOpen(true);
     };
     const [modalIsOpen, setIsOpen] = React.useState(false);
 
-    function openModal() {
-        setIsOpen(true);
-    }
     function closeModal() {
         setIsOpen(false);
     }
@@ -61,7 +55,7 @@ const Navbar = () => {
                         <a href="/about">About</a>
                     </li>
                     <li>
-                        <a href="/contact">Contact</a>
+                        <a href="https://www.linkedin.com/in/rohan-jaiswal-4b3363231/">Contact</a>
                     </li>
                     <li className='person'>
                         {
