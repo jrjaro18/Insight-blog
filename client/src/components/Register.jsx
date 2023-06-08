@@ -59,7 +59,7 @@ const Register = () => {
 
     return (
         <div className='regPage'>
-            <h1 style={{ fontFamily: "'Times New Roman', Tahoma, Geneva, Verdana, sans-serif", fontSize: "5vmax", backgroundPosition: "fixed", cursor: "none", textAlign: "center", marginTop: "0" }}>I N S I G H T</h1>
+            <h1 style={{ fontFamily: "'Arial'", fontSize: "5vmax", backgroundPosition: "fixed", cursor: "none", textAlign: "center", marginTop: "0" , marginBottom:"0", padding:"0", color:"rgb(184, 179, 171)"}}>I N S I G H T</h1>
             <div className='RegisterContainer'>
                 <div className='RegisterHeader'>
                     Register Here

@@ -1,11 +1,11 @@
 .signinPage{
-    background-color: rgb(227, 216, 239);   
+    background-color: rgb(51, 48, 54);      
     height:97.5vh;
 }
 .SignInContainer{
-    background-color: rgb(242, 240, 237);
+    background-color: rgb(231, 227, 221);
     height:auto;
-    width:43vw;
+    width:45vw;
     padding:1vw;
     text-align: center;
     display: flex;
@@ -24,7 +24,7 @@
     padding-top: 0.5rem;
     padding-bottom: 1.5rem;
     font-size: 2rem;
-    color: rgb(0, 0, 0);
+    color: rgb(51, 48, 54);
     font-weight: 600;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     cursor:default;
@@ -42,10 +42,10 @@
     margin-top: 1rem;
     margin-bottom: 0.5rem;
 }
-@media (max-width: 768px) {
+@media (max-width: 1010px) {
     .SignInContainer{
-        width: 88vw;
-        height: 50vh;
+        width: 55vw;
+        height: 30vh;
         align-items: center;
         justify-content: center;
     }

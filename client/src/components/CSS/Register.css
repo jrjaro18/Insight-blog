@@ -1,17 +1,18 @@
 .regPage{
-    background-color: rgb(227, 216, 239);   
-    height:100vh;
+    background-color: rgb(51, 48, 54);   
+    min-height:100vh;
+    padding-bottom:5vh;
 }
 .RegisterContainer{
-    background-color: rgb(242, 240, 237);
+    background-color: rgb(231, 227, 221);
     height:auto;
-    width:64vh;
+    width:50vw;
     padding:1vw;
     text-align: center;
     display: flex;
     flex-direction: column;
     margin:auto;
-    margin-top: 09vh;
+    margin-top:20vh;
     border-radius: 0.5rem;
     margin-bottom: 0rem;
 }
@@ -23,13 +24,12 @@
 }
 .RegisterHeader{
     padding-top: 0.5rem;
-    padding-bottom: 1.5rem;
+    padding-bottom: 1rem;
     font-size: 2rem;
-    color: rgb(0, 0, 0);
+    color: rgb(51, 48, 54);
     font-weight: 600;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     cursor:default;
-
 }
 .RegisterFooterText>a:hover{
     text-decoration: underline;
@@ -43,8 +43,9 @@
     margin-top: 1rem;
     margin-bottom: 0.5rem;
 }
-@media (max-width:768px) {
+@media (max-width:1010px) {
     .RegisterContainer{
-        width:93vw;
+        width:70vw;
     }
+
 }

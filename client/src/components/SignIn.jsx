@@ -9,10 +9,9 @@ function SignIn() {
     var [password, setpassword] = useState('')
 
     var inputStyle = {
-        "marginBottom": "2vmin",
+        "marginBottom": "2vh",
         "borderRadius": "1rem",
-        "width": "99%",
-        "height": "7vmax",
+        "width": "45vw",
     }
 
     const handleClick = () => {
@@ -43,13 +42,13 @@ function SignIn() {
     return (
         localStorage.getItem('email') !== null? window.location.href = '/home':
         <div className='signinPage'>
-            <center> <h1 style={{ fontFamily: "'Times New Roman', Tahoma, Geneva, Verdana, sans-serif", fontSize: "5vmax", marginTop: "0" }}>I N S I G H T</h1> </center>
+            <center> <h1 style={{ fontFamily:"'Arial'", fontSize: "5vmax", marginTop: "0", color:"rgb(184, 179, 171)" }}>I N S I G H T</h1> </center>
             <div className='SignInContainer'>
                 <div className='SignInHeader'>
                     Sign In
                 </div>
                 <div className='SignInInfo'>
-                    <form>
+                    <form onSubmit={handleClick}>
                         <TextField id="outlined-basic" label="Email" variant="outlined" style={inputStyle} onChange={(e) => { setemail(e.target.value) }} />
                         <TextField id="outlined-password-input" label="Password" type="password" autoComplete="current-password" style={inputStyle} onChange={(e) => { setpassword(e.target.value) }} />
                         <Button variant="outlined" onClick={handleClick}>Sign In</Button>
