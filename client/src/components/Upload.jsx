@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState} from 'react';
+import {toast, ToastContainer} from 'react-toastify'
 import axios from 'axios';
 import Navbar from '../containers/Navbar'
 import ReactQuill from 'react-quill';
@@ -55,23 +56,68 @@ const Upload = () => {
 
         console.log(data);
         if(title === undefined || value === undefined || tags === undefined || temp === null){
-            alert('Please fill all the fields!');
+            toast.error('Please fill all the fields', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
             return;
         }
         if(title.length < 10 || title.length > 100){
-            alert('Title should be between 10 and 100 characters long!');
+            toast.error('Title should be between 10 and 100 characters long!', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
             return;
         }
         if(value.length < 1200){
-            alert('Content should be atleast 1200 characters long!');
+            toast.warn('Content should be atleast 1200 characters long!', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
             return;
         }
         if(tagarray.length < 2){
-            alert('Please enter atleast 10 tags!');
+            toast.error('Please enter atleast 2 tags!', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
             return;
         }
         if(temp.type!=="image/jpeg"){
-            alert('Please upload a jpeg image!');
+            toast.error('Please upload a jpeg image!', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
             return;
         }
         axios.post('http://localhost:5000/upload', data).then((res) => {
@@ -119,6 +165,7 @@ const Upload = () => {
                     </Button>
                 </div>
             </form>
+            <ToastContainer />
         </div>
     )
 }

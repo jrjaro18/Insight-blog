@@ -1,7 +1,9 @@
 import React from 'react'
+import {toast, ToastContainer} from 'react-toastify'
 import { useState } from 'react'
 import axios from 'axios'
 import "./CSS/Register.css"
+import 'react-toastify/dist/ReactToastify.css'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -23,18 +25,54 @@ const Register = () => {
 
     const handleSubmit = () => {
         if(name === '' || email === '' || password === '' || confirmPassword === '' || dob === null){
-            alert("Please fill all the fields");
+            return toast.error('Please fill all the fields', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
         }
         if(password !== confirmPassword){
-            alert("Passwords do not match");
+            return toast.error('Passwords do not match!', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
         }
         if(password.length < 6){
-            alert("Password must be atleast 6 characters long");
+            return toast.warn('Passwords must be 6 characters long!', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
         }
         const editeddob = dayjs(dob).format('YYYY-MM-DD');
         const today = dayjs().format('YYYY-MM-DD');
         if(editeddob > today){
-            alert("Date of Birth cannot be in the future");
+            return toast.error('Data of Birth in future!?', {
+                position: "bottom-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                });
         }
         else{
             const user = {
@@ -45,7 +83,16 @@ const Register = () => {
             }
             axios.post('http://localhost:5000/register', user).then((res) => {
                 if(res.data === "User already exists"){
-                    alert("User already exists");
+                    return toast.error('User already exists!', {
+                        position: "bottom-right",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        });
                 }
                 else{
                     alert("User created successfully");
@@ -80,6 +127,7 @@ const Register = () => {
                     Already have an account? <a href='/signin'>LogIn</a>
                 </div>
             </div>
+            <ToastContainer position="bottom-right" newestOnTop />
         </div>
     )
 }
