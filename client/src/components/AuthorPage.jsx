@@ -7,7 +7,7 @@ import Tiles from '../containers/Tiles'
 const AuthorPage = () => {
     const [data, setData] = useState()
     useEffect(() => {
-        axios.get('http://localhost:5000/author-page/:' + localStorage.getItem("id")).then((response) => {
+        axios.get('https://insight-blog.onrender.com/author-page/:' + localStorage.getItem("id")).then((response) => {
             setData(response.data)
             //console.log(response.data)
         }
@@ -20,7 +20,7 @@ const AuthorPage = () => {
             <Navbar />
             <div className='authorpageheading'>Your Blogs</div >
             {
-                data?(
+                data ? (
                     data.map((data, index) => {
                         return <Tiles key={index} data={data} />
                     })

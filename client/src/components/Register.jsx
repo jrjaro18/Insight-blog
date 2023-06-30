@@ -1,5 +1,5 @@
 import React from 'react'
-import {toast, ToastContainer} from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 import { useState } from 'react'
 import axios from 'axios'
 import "./CSS/Register.css"
@@ -24,7 +24,7 @@ const Register = () => {
     const [dob, setDob] = useState(null);
 
     const handleSubmit = () => {
-        if(name === '' || email === '' || password === '' || confirmPassword === '' || dob === null){
+        if (name === '' || email === '' || password === '' || confirmPassword === '' || dob === null) {
             return toast.error('Please fill all the fields', {
                 position: "bottom-right",
                 autoClose: 3000,
@@ -34,9 +34,9 @@ const Register = () => {
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-                });
+            });
         }
-        if(password !== confirmPassword){
+        if (password !== confirmPassword) {
             return toast.error('Passwords do not match!', {
                 position: "bottom-right",
                 autoClose: 3000,
@@ -46,9 +46,9 @@ const Register = () => {
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-                });
+            });
         }
-        if(password.length < 6){
+        if (password.length < 6) {
             return toast.warn('Passwords must be 6 characters long!', {
                 position: "bottom-right",
                 autoClose: 3000,
@@ -58,11 +58,11 @@ const Register = () => {
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-                });
+            });
         }
         const editeddob = dayjs(dob).format('YYYY-MM-DD');
         const today = dayjs().format('YYYY-MM-DD');
-        if(editeddob > today){
+        if (editeddob > today) {
             return toast.error('Data of Birth in future!?', {
                 position: "bottom-right",
                 autoClose: 3000,
@@ -72,17 +72,17 @@ const Register = () => {
                 draggable: true,
                 progress: undefined,
                 theme: "light",
-                });
+            });
         }
-        else{
+        else {
             const user = {
-                name:name,
-                email:email,
-                password:password,
-                dob:editeddob                
+                name: name,
+                email: email,
+                password: password,
+                dob: editeddob
             }
-            axios.post('http://localhost:5000/register', user).then((res) => {
-                if(res.data === "User already exists"){
+            axios.post('https://insight-blog.onrender.com/register', user).then((res) => {
+                if (res.data === "User already exists") {
                     return toast.error('User already exists!', {
                         position: "bottom-right",
                         autoClose: 3000,
@@ -92,9 +92,9 @@ const Register = () => {
                         draggable: true,
                         progress: undefined,
                         theme: "light",
-                        });
+                    });
                 }
-                else{
+                else {
                     alert("User created successfully");
                     window.location.href = '/signin';
                 }
@@ -106,7 +106,7 @@ const Register = () => {
 
     return (
         <div className='regPage'>
-            <h1 style={{ fontFamily: "'Arial'", fontSize: "5vmax", backgroundPosition: "fixed", cursor: "none", textAlign: "center", marginTop: "0" , marginBottom:"0", padding:"0", color:"rgb(184, 179, 171)"}}>I N S I G H T</h1>
+            <h1 style={{ fontFamily: "'Arial'", fontSize: "5vmax", backgroundPosition: "fixed", cursor: "none", textAlign: "center", marginTop: "0", marginBottom: "0", padding: "0", color: "rgb(184, 179, 171)" }}>I N S I G H T</h1>
             <div className='RegisterContainer'>
                 <div className='RegisterHeader'>
                     Register Here

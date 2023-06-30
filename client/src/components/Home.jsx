@@ -10,10 +10,10 @@ const Home = () => {
   const [data, setData] = React.useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/tile-data').then((res) => {
+    axios.get('https://insight-blog.onrender.com/tile-data').then((res) => {
       //console.log(res.data)
       setData(res.data)
-    } ).catch((err) => {
+    }).catch((err) => {
       console.log(err)
     })
   }, [])
@@ -21,14 +21,14 @@ const Home = () => {
   return (
     <React.Fragment>
       <div className='homepage'>
-        <Navbar/>
-        <Searchbar/>
-        <br/>
+        <Navbar />
+        <Searchbar />
+        <br />
         {data.map((dat, i) => {
-          return <Tiles key={i} data={dat}/>
+          return <Tiles key={i} data={dat} />
         }
         )}
-        </div>
+      </div>
     </React.Fragment>
   )
 }

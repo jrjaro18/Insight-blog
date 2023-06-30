@@ -17,7 +17,7 @@ function SignIn() {
     }
 
     const handleClick = () => {
-        axios.post('http://localhost:5000/login', {
+        axios.post('https://insight-blog.onrender.com/login', {
             email: email,
             password: password
         })

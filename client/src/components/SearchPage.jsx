@@ -10,7 +10,7 @@ const SearchPage = () => {
     console.log(search);
     const [searchResults, setSearchResults] = useState([]);
     useEffect(() => {
-        axios.get(`http://localhost:5000/search/:${search}`).then((res) => {
+        axios.get(`https://insight-blog.onrender.com/search/:${search}`).then((res) => {
             //console.log(res.data[0].item);
             setSearchResults(res.data);
         }).catch((err) => {
@@ -21,7 +21,7 @@ const SearchPage = () => {
         <React.Fragment>
             <Navbar />
             <Searchbar />
-            {searchResults!==undefined? (
+            {searchResults !== undefined ? (
                 searchResults.map((result) => {
                     return <Tiles data={result.item} />
                 }

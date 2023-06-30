@@ -19,7 +19,7 @@ const BlogPage = () => {
         if (localStorage.getItem('email') === null) {
             alert("Login to like the blog")
         } else {
-            axios.post('http://localhost:5000/blog/like/:' + data._id + "+" + localStorage.getItem("id")).then((response) => {
+            axios.post('https://insight-blog.onrender.com/blog/like/:' + data._id + "+" + localStorage.getItem("id")).then((response) => {
                 console.log(response.data)
                 if (response.data.liked) {
                     document.getElementsByClassName("blogpagelikebutton")[0].style.color = "red"
@@ -42,7 +42,7 @@ const BlogPage = () => {
             alert("Comment cannot be empty")
         }
         else {
-            axios.post('http://localhost:5000/blog/comment/:' + data._id + "+" + localStorage.getItem("id"), { comment: comment, name: localStorage.getItem('name') }).then((response) => {
+            axios.post('https://insight-blog.onrender.com/blog/comment/:' + data._id + "+" + localStorage.getItem("id"), { comment: comment, name: localStorage.getItem('name') }).then((response) => {
                 window.location.reload()
             }).catch((err) => {
                 console.log(err)
@@ -52,7 +52,7 @@ const BlogPage = () => {
 
     //for the blog
     useEffect(() => {
-        axios.get('http://localhost:5000/blog/' + id).then((response) => {
+        axios.get('https://insight-blog.onrender.com/blog/' + id).then((response) => {
             if (response !== null) {
                 setData(response.data)
             }
@@ -64,7 +64,7 @@ const BlogPage = () => {
 
     //for the comments
     useEffect(() => {
-        axios.get('http://localhost:5000/blog/get-comments/:' + id).then((response) => {
+        axios.get('https://insight-blog.onrender.com/blog/get-comments/:' + id).then((response) => {
             if (response !== null) {
                 setRecComment(response.data)
             }
@@ -83,7 +83,7 @@ const BlogPage = () => {
                     <div className="blogpageheading">
                         <div className="blogpageheadingleft">
                             <div className="blogpageimage">
-                                <img src={"http://localhost:5000/uploads/" + id + ".jpg"} alt="Blog" />
+                                <img src={"https://insight-blog.onrender.com/uploads/" + id + ".jpg"} alt="Blog" />
                             </div>
                         </div>
                         <div className="blogpageheadingright">
