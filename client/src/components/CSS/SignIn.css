@@ -5,7 +5,7 @@
 .SignInContainer{
     background-color: rgb(231, 227, 221);
     height:auto;
-    width:45vw;
+    width:37vw;
     padding:1vw;
     text-align: center;
     display: flex;
@@ -45,8 +45,9 @@
 @media (max-width: 1010px) {
     .SignInContainer{
         width: 55vw;
-        height: 30vh;
+        height: auto;
         align-items: center;
         justify-content: center;
+        padding: 2rem;
     }
 }

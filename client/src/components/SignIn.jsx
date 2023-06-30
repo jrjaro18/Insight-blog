@@ -13,7 +13,7 @@ function SignIn() {
     var inputStyle = {
         "marginBottom": "2vh",
         "borderRadius": "1rem",
-        "width": "45vw",
+        "width": "100%",
     }
 
     const handleClick = () => {
@@ -78,8 +78,8 @@ function SignIn() {
                     </div>
                     <div className='SignInInfo'>
                         <form onSubmit={handleClick}>
-                            <TextField id="outlined-basic" label="Email" variant="outlined" style={inputStyle} onChange={(e) => { setemail(e.target.value) }} />
-                            <TextField id="outlined-password-input" label="Password" type="password" autoComplete="current-password" style={inputStyle} onChange={(e) => { setpassword(e.target.value) }} />
+                            <TextField id="outlined-basic"  label="Email" variant="outlined" style={inputStyle} onChange={(e) => { setemail(e.target.value) }} />
+                            <TextField id="outlined-password-input"  label="Password" type="password" autoComplete="current-password" style={inputStyle} onChange={(e) => { setpassword(e.target.value) }} />
                             <Button variant="outlined" onClick={handleClick}>Sign In</Button>
                         </form>
                     </div>

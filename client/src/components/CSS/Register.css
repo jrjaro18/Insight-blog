@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: column;
     margin:auto;
-    margin-top:20vh;
+    margin-top:10vh;
     border-radius: 0.5rem;
     margin-bottom: 0rem;
 }
@@ -45,7 +45,7 @@
 }
 @media (max-width:1010px) {
     .RegisterContainer{
-        width:70vw;
+        width:85vw;
     }
 
 }
