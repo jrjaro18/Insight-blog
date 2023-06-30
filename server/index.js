@@ -25,10 +25,10 @@ app.use(express.urlencoded({ extended: true }));
 /*connecting to the mongoose database*/ dbase();
 
 const port = 5000;
-app.use(express.static(path.join(__dirname, '../client/build')));
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
+// app.use(express.static(path.join(__dirname, '../client/build')));
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, '../client/build/index.html'));
+// });
 
 app.listen(port, async () => {
     console.log(`Server is running on port ${port}`);
