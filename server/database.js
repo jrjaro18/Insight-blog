@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const db = 'mongodb+srv://rohanjaiswal1500:rohan%400506@cluster0.fs36y0b.mongodb.net/';
+const db = 'enterhere';
 
 const dbase = () => {
     mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
